@@ -32,24 +32,23 @@ public class HowOldAreYou {
 			}
 		}
 		System.out.println("あなたは、" +  ( age ) + "歳ですね");
-			System.out.println("あなたは10年後、" + ( age + 6 ) + "歳ですね"); // 2030年
-			if(( 2024-age ) <= 1894){
-				System.out.println("明治" + ( 2024-age-1890+23 ) + "年生まれ"); // 明治
-			}else if(( 2024-age ) <= 1925){
-				System.out.println("大正" + ( 2024-age-1895 ) + "年生まれ"); // 大正
-			}else if(( 2024-age ) <= 1988){
-				System.out.println("昭和" + ( 2024-age-1925 ) + "年生まれ"); // 昭和
-			}else if(( 2024-age ) <= 2018){
-				System.out.println("平成" + ( 2024-age-1988 ) + "年生まれ"); // 平成
+		System.out.println("あなたは10年後、" + ( age + 6 ) + "歳ですね"); // 2030年
+		int year = 2024-age;
+			if( year <= 1911){
+				System.out.println("明治" + ( year-1867 ) + "年生まれ"); // 明治
+			}else if(year <= 1925){
+				System.out.println("大正" + ( year-1911 ) + "年生まれ"); // 大正
+			}else if(year <= 1988){
+				System.out.println("昭和" + ( year-1925 ) + "年生まれ"); // 昭和
+			}else if(year <= 2018){
+				System.out.println("平成" + ( year-1988 ) + "年生まれ"); // 平成
 			}else{
-				System.out.println("令和" + ( 2024-age-2018 ) + "年生まれ"); // 令和
+				System.out.println("令和" + ( year-2018 ) + "年生まれ"); // 令和
 			}
 	}
 		catch(IOException e) { // エラーが起きたら
 			System.out.println(e);
 		}
-
-
 	}
 }
 
