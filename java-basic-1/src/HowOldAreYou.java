@@ -13,7 +13,7 @@ public class HowOldAreYou {
 
 			// readLine() は、入出力エラーの可能性がある。エラー処理がないとコンパイルできない。
 			//  Java では、 try{ XXXXXXXX }  catch(エラーの型 変数) { XXXXXXXXXXXXXXXXXX} と書く
-			int age;
+		int age;
 		try {
 			while(true){
 			System.out.println("何歳ですか?");
@@ -22,7 +22,11 @@ public class HowOldAreYou {
 			System.exit(0);
 			}else{
 			}
+			try {
 			age = Integer.parseInt(line);
+			} catch (NumberFormatException e) {
+				continue;
+			}
 			if(age >= 0 && age < 120){
 				break;
 			}

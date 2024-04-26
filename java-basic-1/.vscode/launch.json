@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "HowOldAreYou",
+            "request": "launch",
+            "mainClass": "HowOldAreYou",
+            "projectName": "java-basic-1_141fbfdb"
+        },
+        {
+            "type": "java",
+            "name": "NetproLabMember",
+            "request": "launch",
+            "mainClass": "NetproLabMember",
+            "projectName": "java-basic-1_141fbfdb"
+        },
+        {
+            "type": "java",
             "name": "NetproLabMember",
             "request": "launch",
             "mainClass": "NetproLabMember",
