@@ -13,38 +13,39 @@ public class HowOldAreYou {
 
 			// readLine() は、入出力エラーの可能性がある。エラー処理がないとコンパイルできない。
 			//  Java では、 try{ XXXXXXXX }  catch(エラーの型 変数) { XXXXXXXXXXXXXXXXXX} と書く
-		int age;
-		try {
-			while(true){
+		int age; // 年齢を格納
+		try { // try-catch
+			while(true){ // 条件を満たすまで繰り返し
 			System.out.println("何歳ですか?");
-			String line = reader.readLine();
-			if(line.equals("q") || line.equals("e")){
-			System.exit(0);
+			String line = reader.readLine(); // ユーザに入力させる
+			if(line.equals("q") || line.equals("e")){ // qかeなら
+			System.exit(0); // プログラムを終了
 			}else{
 			}
-			try {
-			age = Integer.parseInt(line);
-			} catch (NumberFormatException e) {
-				continue;
+			try { // try-catch
+			age = Integer.parseInt(line); // 文字列を数字に変換
+			} catch (NumberFormatException e) { // 数字以外だったら
+				continue; // 再入力を促す
 			}
-			if(age >= 0 && age < 120){
-				break;
+			if(age >= 0 && age < 120){ // 年齢が規定範囲内だったら
+				break; // 繰り返しを終了する
 			}
 		}
-			System.out.println("2030年のユーザの年齢は" + ( age + 6 ) + "歳ですね。");
+		System.out.println("あなたは、" +  ( age ) + "歳ですね");
+			System.out.println("あなたは10年後、" + ( age + 6 ) + "歳ですね"); // 2030年
 			if(( 2024-age ) <= 1894){
-				System.out.println("明治" + ( 2024-age-1890+23 ) + "年生まれ");
+				System.out.println("明治" + ( 2024-age-1890+23 ) + "年生まれ"); // 明治
 			}else if(( 2024-age ) <= 1925){
-				System.out.println("大正" + ( 2024-age-1895 ) + "年生まれ");
+				System.out.println("大正" + ( 2024-age-1895 ) + "年生まれ"); // 大正
 			}else if(( 2024-age ) <= 1988){
-				System.out.println("昭和" + ( 2024-age-1925 ) + "年生まれ");
+				System.out.println("昭和" + ( 2024-age-1925 ) + "年生まれ"); // 昭和
 			}else if(( 2024-age ) <= 2018){
-				System.out.println("平成" + ( 2024-age-1988 ) + "年生まれ");
+				System.out.println("平成" + ( 2024-age-1988 ) + "年生まれ"); // 平成
 			}else{
-				System.out.println("令和" + ( 2024-age-2018 ) + "年生まれ");
+				System.out.println("令和" + ( 2024-age-2018 ) + "年生まれ"); // 令和
 			}
 	}
-		catch(IOException e) {
+		catch(IOException e) { // エラーが起きたら
 			System.out.println(e);
 		}
 
