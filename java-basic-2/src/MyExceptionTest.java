@@ -2,8 +2,7 @@ public class MyExceptionTest {
 
 	public static void main(String[] args) {
 
-		MyExceptionTest myE=new MyExceptionTest();
-
+		MyExceptionTest myE = new MyExceptionTest();
 
 		try {
 			myE.test();
@@ -12,8 +11,8 @@ public class MyExceptionTest {
 		}
 	}
 
-	void test() throws MyException{
-		if(true){
+	void test() throws MyException {
+		if (true) {
 			throw new MyException();
 		}
 	}

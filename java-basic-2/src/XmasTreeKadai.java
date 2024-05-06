@@ -22,7 +22,7 @@ public class XmasTreeKadai {
                 }
             System.out.println();
         }
-       for(int i=0; i<7; i++){
+    for(int i=0; i<7; i++){
         for(int l=0; l<38; l++){
             if(l < 19 && l > 19-3){
                 System.out.print("*");

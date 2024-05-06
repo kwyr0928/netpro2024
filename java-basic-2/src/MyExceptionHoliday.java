@@ -9,16 +9,20 @@ public class MyExceptionHoliday {
 		MyExceptionHoliday myE = new MyExceptionHoliday();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-		try {
-			System.out.print("5月の日付を入力してください：");
-			String line = reader.readLine();
-			int theday = Integer.parseInt(line);
-			System.out.println("入力した日付：" + theday + "日");
-			myE.test(theday);
-		} catch (IOException e) {
-			System.out.println(e);
-		} catch (NoHolidayException e) {
-			e.printStackTrace();
+		while (true) {
+			try {
+				System.out.println("");
+				System.out.print("5月の日付を入力してください：");
+				String line = reader.readLine();
+				int theday = Integer.parseInt(line);
+				System.out.println("");
+				System.out.println("入力した日付：" + theday + "日");
+				myE.test(theday);
+			} catch (IOException e) {
+				System.out.println(e);
+			} catch (NoHolidayException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

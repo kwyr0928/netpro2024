@@ -42,7 +42,11 @@ public class PrimeCheck {
             }
             sosuu_group.put(j, list); // j(下１桁)に完成したリストを代入
         }
-        // System.out.println(sosuu_group);
+        System.out.println("");
+        System.out.println("3以上の100000までの素数全体を下一桁を項目としてグループ分け");
+        System.out.println("");
+        System.out.println(sosuu_group);
+        
     }
 
     public void ranking() { // ランキング付け
@@ -54,20 +58,23 @@ public class PrimeCheck {
 
         for (int n = 0; n < 3; n++) {
             for (int m = 0; m < 3; m++) {
-                sosuu_chain.put("前:" + number[n] + " 後:" + number[m] + "", 0); // 初期値0をセット
+                sosuu_chain.put(number[n] + "-" + number[m], 0); // 初期値0をセット
                 for (int i = 1; i < sosuuList.size(); i++) {
                     if (sosuuList.get(i - 1) % 10 == number[n] && sosuuList.get(i) % 10 == number[m]) {
-                        sosuu_chain.put("前:" + number[n] + " 後:" + number[m] + "",
-                                sosuu_chain.get("前:" + number[n] + " 後:" + number[m] + "") + 1); // 一致するものがあったらvalueを+1する
+                        sosuu_chain.put(number[n] + "-" + number[m],
+                                sosuu_chain.get(number[n] + "-" + number[m]) + 1); // 一致するものがあったらvalueを+1する
                     }
                 }
 
             }
         }
-        System.out.println(sosuu_chain);
+        // System.out.println(sosuu_chain);
         // 出現回数が多い順に並び替え
+        System.out.println("");
+        System.out.println("連続する素数の下一桁の出現回数のランキング付け(降順)");
+        System.out.println("");
         sosuu_chain.entrySet().stream()
-            .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-            .forEach(entry -> System.out.println(entry.getKey() + ": " + entry.getValue()));
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .forEach(entry -> System.out.println(entry.getKey() + ": " + entry.getValue() + " 回"));
     }
 }
