@@ -4,41 +4,43 @@ import java.net.BindException;
 import java.net.Socket; //ネットワーク関連のパッケージを利用する
 import java.util.Scanner;
 
-public class XmasTCPClient {
+public class KadaiTCPClient {
 
     public static void main(String arg[]) {
         try {
-            Scanner scanner = new Scanner(System.in,  "UTF-8");
+            Scanner scanner = new Scanner(System.in, "Shift_JIS");
             System.out.print("ポートを入力してください(5000など) → ");
             int port = scanner.nextInt();
             System.out.println("localhostの" + port + "番ポートに接続を要求します");
             Socket socket = new Socket("localhost", port);
             System.out.println("接続されました");
 
-            System.out.println("プレゼントを送ります");
+            System.out.println("課題を登録します！");
             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
 
-            System.out.println("メッセージを入力してください(例:メリークリスマス) ↓");
-            String message = scanner.next();
-            System.out.println("プレゼントの内容を入力してください(例:お菓子) ↓");
-            String content = scanner.next();
+            System.out.println("講義名を入力してください！(例:ネットワークプログラミングとクラウド開発) ↓");
+            String subject = scanner.next();
+            System.out.println("講義回を入力してください！(例:1,2,3) ↓");
+            String number = scanner.next();
+            System.out.println("課題名を入力してください！(例:オリジナル通信プログラムの作成) ↓");
+            String kadai = scanner.next();
             scanner.close();
 
-            XmasPresent present = new XmasPresent();
-            present.setMessage(message);
-            present.setContent(content);
+            KadaiRegister present = new KadaiRegister();
+            present.setSubject(subject);
+            present.setNumber(number);
+            present.setKadai(kadai);
 
             oos.writeObject(present);
             oos.flush();
 
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
 
-            XmasPresent okaeshiPresent = (XmasPresent) ois.readObject();
-
-            String replayMsg = okaeshiPresent.getMessage();
-            System.out.println("サーバからのメッセージは" + replayMsg);
-            String replayContent = okaeshiPresent.getContent();
-            System.out.println(replayContent + "をもらいました！");
+            KadaiRegister kadaiRegister = (KadaiRegister) ois.readObject();
+            String replaySub = kadaiRegister.getSubject();
+            System.out.println("サーバからのメッセージは" + replaySub);
+            String replayKdi = kadaiRegister.getKadai();
+            System.out.println(replayKdi);
 
             ois.close();
             oos.close();

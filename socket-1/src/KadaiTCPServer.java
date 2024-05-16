@@ -5,17 +5,11 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class XmasServer {
-
-    private static final int times = 2;
+public class KadaiTCPServer {
 
     private static String serverProcess(String content) {
         StringBuilder sb = new StringBuilder();
-        sb.append("🎁");
-        for (int i = 0; i < times; i++) {
-            sb.append(content);
-        }
-        sb.append("🎁");
+        sb.append("無理しないでね");
         String result = sb.toString();
         return result;
     }
@@ -23,31 +17,32 @@ public class XmasServer {
     public static void main(String arg[]) {
         try {
             /* 通信の準備をする */
-            Scanner scanner = new Scanner(System.in);
+            Scanner scanner = new Scanner(System.in, "Shift-JIS");
             System.out.print("ポートを入力してください(5000など) → ");
             int port = scanner.nextInt();
             scanner.close();
             System.out.println("localhostの" + port + "番ポートで待機します");
             ServerSocket server = new ServerSocket(port); // ポート番号を指定し、クライアントとの接続の準備を行う
-
             Socket socket = server.accept(); // クライアントからの接続要求を待ち、
             // 要求があればソケットを取得し接続を行う
             System.out.println("接続しました。相手の入力を待っています......");
 
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+            while (true) {
+            KadaiRegister kadaiRegister = (KadaiRegister) ois.readObject();// Integerクラスでキャスト。
 
-            XmasPresent present = (XmasPresent) ois.readObject();// Integerクラスでキャスト。
-
-            String msgPresent = present.getMessage();
-            System.out.println("メッセージは" + msgPresent);
-            String presentFromClient = present.getContent();
-            System.out.println("プレゼントの内容は" + presentFromClient);
+            String subject = kadaiRegister.getSubject();
+            System.out.println("講義名は" + subject);
+            String number = kadaiRegister.getNumber();
+            System.out.println("講義回は 第" + number + "回");
+            String kadai = kadaiRegister.getKadai();
+            System.out.println("課題名は" + kadai);
 
             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
 
-            XmasPresent response = new XmasPresent();
-            response.setMessage("サーバーです。メリークリスマス！\n" + presentFromClient + "ありがとう。\nプレゼントのお返しは" + times + "倍" + "です");
-            response.setContent(serverProcess(presentFromClient));
+            KadaiRegister response = new KadaiRegister();
+            response.setSubject("課題名：" + kadai + "を登録しました！");
+            response.setKadai(serverProcess(kadai));
 
             oos.writeObject(response);
             oos.flush();
@@ -59,7 +54,7 @@ public class XmasServer {
             // socketの終了。
             socket.close();
             server.close();
-
+            }
         } // エラーが発生したらエラーメッセージを表示してプログラムを終了する
         catch (BindException be) {
             be.printStackTrace();
