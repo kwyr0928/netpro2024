@@ -26,19 +26,19 @@ public class KadaiTCPClient {
             String kadai = scanner.next();
             scanner.close();
 
-            KadaiRegister present = new KadaiRegister();
-            present.setSubject(subject);
-            present.setNumber(number);
-            present.setKadai(kadai);
+            KadaiRegister kadairegister = new KadaiRegister();
+            kadairegister.setSubject(subject);
+            kadairegister.setNumber(number);
+            kadairegister.setKadai(kadai);
 
-            oos.writeObject(present);
+            oos.writeObject(kadairegister);
             oos.flush();
 
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
 
             KadaiRegister kadaiRegister = (KadaiRegister) ois.readObject();
             String replaySub = kadaiRegister.getSubject();
-            System.out.println("サーバからのメッセージは" + replaySub);
+            System.out.println("新しい課題：" + replaySub);
             String replayKdi = kadaiRegister.getKadai();
             System.out.println(replayKdi);
 
