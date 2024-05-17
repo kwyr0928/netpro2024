@@ -1,4 +1,4 @@
-# KadaiRegister
+# KadaiRegister.java
 -String subject // 講義名
 -String number // 講義回
 -String kadai // 課題名
