@@ -23,11 +23,11 @@ public class TaskServerOnce {
 
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
 
-            TaskObject present = (TaskObject) ois.readObject();// Integerクラスでキャスト。
-            present.exec();
+            TaskObject task = (TaskObject) ois.readObject();// Integerクラスでキャスト
+            task.exec();
             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
 
-            oos.writeObject(present);
+            oos.writeObject(task);
             oos.flush();
 
             // close処理

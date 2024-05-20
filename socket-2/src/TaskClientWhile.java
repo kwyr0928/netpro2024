@@ -4,7 +4,7 @@ import java.net.BindException;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class TaskClientOnce {
+public class TaskClientWhile {
 
     public static void main(String arg[]) {
         TaskObject task = new TaskObject();

@@ -1,24 +1,33 @@
 import java.io.Serializable;
 
-public class TaskObject implements Serializable {
+public class TaskObject implements ITask, Serializable {
+    int number;
+    PrimeChecker checker = new PrimeChecker();
 
-    long number;
-
-    public void setNumber(long number) {
-        this.number = number;
+    public static void main(String[] args) {
     }
 
-    public long getNumber() {
-        return number;
+    @Override
+    public void setExecNumber(int x) {
+        this.number = x;
     }
 
+    @Override
     public void exec() {
-        number = number * number;
+        int result = 1;
+        for (int i = 1; i <= number; i++) {
+            if (PrimeChecker.isPrime(i)) {
+                result = i;
+                System.out.println(i + " is a prime number.");
+            } else {
+                System.out.println(i + " is not a prime number.");
+            }
+        }
+        number = result;
     }
 
-    public interface ITask {
-        public void setExecNumber(int x); //クライアントで最初に計算させる数字を入力しておく関数
-        public void exec() ; //サーバで計算を実行をさせる関数...計算アルゴリズムが記載される。下記アルゴリズムを参照のこと
-        public int getResult(); //クライアントで結果を取り出す関数
+    @Override
+    public int getResult() {
+        return number;
     }
 }
