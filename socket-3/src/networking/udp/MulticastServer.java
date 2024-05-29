@@ -30,7 +30,7 @@ public class MulticastServer {
                 String receivedCommand = new String(packet.getData(), 0, packet.getLength());
                 System.out.println("Received command: " + receivedCommand);
 
-                Scanner scanner = new Scanner(System.in, "Shift_JIS");
+                Scanner scanner = new Scanner(System.in);
                 System.out.print("返信を入力してください: ");
                 String repmessage = scanner.nextLine();
                 byte[] bytesToSend = repmessage.getBytes();

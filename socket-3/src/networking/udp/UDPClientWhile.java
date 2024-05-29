@@ -17,7 +17,7 @@ public class UDPClientWhile {
 
             while (true) {
                 // クライアントからのメッセージをユーザに入力させる
-                System.out.print("送信メッセージを入力してください: ");
+                System.out.print("小文字の文字列を入力してください: ");
                 String clientMessage = scanner.nextLine();
                 sendData = clientMessage.getBytes();
 
@@ -29,7 +29,7 @@ public class UDPClientWhile {
                 DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
                 socket.receive(receivePacket);
                 String serverResponse = new String(receivePacket.getData(), 0, receivePacket.getLength());
-                System.out.println("サーバからの返信: " + serverResponse);
+                System.out.println("サーバ(次郎さん)からの返信: " + serverResponse);
             }
         } catch (Exception e) {
             e.printStackTrace();

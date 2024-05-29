@@ -16,7 +16,7 @@ public class MulticastClient {
 
             // データ送信用のソケットを作成
             socket = new DatagramSocket();
-            Scanner scanner = new Scanner(System.in, "Shift_JIS");
+            Scanner scanner = new Scanner(System.in);
 
             while (true) {
             // 送信するコマンドを設定

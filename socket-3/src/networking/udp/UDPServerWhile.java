@@ -3,7 +3,6 @@ package networking.udp;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.util.Scanner;
 
 public class UDPServerWhile {
     public static void main(String[] args) {
@@ -16,17 +15,15 @@ public class UDPServerWhile {
             while (true) {
                 // 受信パケットの準備
                 DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
-                System.out.println("サーバーはクライアントからのメッセージを待っています...");
+                System.out.println("サーバ(次郎さん)はクライアント(太郎さん)からのメッセージを待っています...");
 
                 // クライアントからのデータを受信
                 socket.receive(receivePacket);
                 String clientMessage = new String(receivePacket.getData(), 0, receivePacket.getLength());
-                System.out.println("受信: " + clientMessage);
+                System.out.println("クライアント(太郎さん)からの受信: " + clientMessage);
 
                 // サーバーからの返信をユーザに入力させる
-                Scanner scanner = new Scanner(System.in, "Shift_JIS");
-                System.out.print("返信を入力してください: ");
-                String serverResponse = scanner.nextLine();
+                String serverResponse = clientMessage.toUpperCase();
                 sendData = serverResponse.getBytes();
 
                 // クライアントのアドレスとポートを取得

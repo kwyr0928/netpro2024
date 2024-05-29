@@ -1,17 +1,33 @@
 package thread;
 
 // Runnable インターフェースを実装することで、このクラスのインスタンスはスレッドとして実行可能になります。
-public class CountAZTenRunnable implements Runnable {
-    String myAlfabetStr = "noalfabet";
+public class ExThreadsMain implements Runnable {
+    String task = "";
     // main メソッドはプログラムのエントリーポイントです。
     public static void main(String[] args) {
-        CountAZTenRunnable[] cts = new CountAZTenRunnable[26];
-        for(int i=0; i<26; i++){
-        cts[i] = new CountAZTenRunnable();
-        cts[i].setAlfabet((char)(97+i)+"_chan");
+        ExThreadsMain[] works = new ExThreadsMain[17];
+        for(int i=0; i<works.length; i++){
+        works[i] = new ExThreadsMain();
     }
-    for(CountAZTenRunnable ct : cts){
-        new Thread (ct).start();
+    works[0].setTask("洗濯");
+    works[1].setTask("炊飯");
+    works[2].setTask("掃除");
+    works[3].setTask("洗い物");
+    works[4].setTask("料理");
+    works[5].setTask("風呂掃除");
+    works[6].setTask("テレビ");
+    works[7].setTask("ブルアカ");
+    works[8].setTask("Twitter");
+    works[9].setTask("散歩");
+    works[10].setTask("昼寝");
+    works[11].setTask("課題");
+    works[12].setTask("インターン");
+    works[13].setTask("就活");
+    works[14].setTask("電話");
+    works[15].setTask("プログラミング");
+    works[16].setTask("草むしり");
+    for(ExThreadsMain work : works){
+        new Thread (work).start();
     }
 
 
@@ -29,15 +45,15 @@ public class CountAZTenRunnable implements Runnable {
         }
     }
 
-    public void setAlfabet(String alfabetstr) {
-    myAlfabetStr = alfabetstr;
+    public void setTask(String taskContent) {
+    task = taskContent;
     }
     // run メソッドは、新しいスレッドが実行するコードを含みます。
     public void run() {
         // この try-catch ブロックは、0 から 9 までの値を 1000 ミリ秒間隔で出力するループを実行します。
         try {
             for (int i = 0; i < 10; i++) {
-                System.out.println(myAlfabetStr+" thread:i=" + i);
+                System.out.println(task+" thread:i=" + i);
                 // スレッドを 1000 ミリ秒間一時停止します。
                 Thread.sleep(1000); // ミリ秒単位のスリープ時間
             }
