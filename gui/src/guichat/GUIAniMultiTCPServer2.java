@@ -17,12 +17,10 @@ class GUIAniMultiTCPServer2 {
 
 	GUIAnimationMain animation;
 
-	
 	public static void main(String[] args) {
 		new GUIAniMultiTCPServer2(null);
 
 	}// mainend
-	
 
 	public GUIAniMultiTCPServer2(GUIAnimationMain animation) {
 		this.animation = animation;
@@ -53,7 +51,7 @@ class GUIAniMultiTCPServer2 {
 
 				// System.out.println("Waiting for New Connection. ");
 				// flag=false;
-			}// while end
+			} // while end
 		} catch (IOException e) {
 			System.out.println("IOException!");
 			e.printStackTrace();
@@ -65,7 +63,7 @@ class GUIAniMultiTCPServer2 {
 			} catch (IOException ioex) {
 				ioex.printStackTrace();
 			}
-		}// finally end
+		} // finally end
 
 	}// MultiTCPServer(GUIAnimationFaceObjMain animation) end
 
@@ -96,63 +94,61 @@ class GUIAniMultiTCPServer2 {
 					System.exit(1);
 				}
 
-				//受け取ったコマンドがface,colorで始まりかつanimationがあるなら。
+				// 受け取ったコマンドがface,colorで始まりかつanimationがあるなら。
 				if (line.startsWith("face,color") && animation != null) {
-					String[] sline=line.split(",");
-					System.out.println("face"+sline[0]);
-					System.out.println("color"+sline[1]);
-					System.out.println("which"+sline[2]);
-					System.out.println("color"+sline[3]);
-					int which=Integer.parseInt(sline[2]);
-					String  c=sline[3];
+					String[] sline = line.split(",");
+					System.out.println("face" + sline[0]);
+					System.out.println("color" + sline[1]);
+					System.out.println("which" + sline[2]);
+					System.out.println("color" + sline[3]);
+					int which = Integer.parseInt(sline[2]);
+					String c = sline[3];
 
-					if(c.equals("yellow")){
+					if (c.equals("yellow")) {
 						animation.setFaceColor(which, Color.yellow);
-					}else if(c.equals("ref")){
+					} else if (c.equals("ref")) {
 						animation.setFaceColor(which, Color.red);
 					}
 
-
-				}else
-				//受け取ったコマンドがface,placeで始まりかつanimationがあるなら。
+				} else
+				// 受け取ったコマンドがface,placeで始まりかつanimationがあるなら。
 				if (line.startsWith("face,place") && animation != null) {
 					System.out.println("受信完了 :" + line);
-					/***課題はここからを改造***/
-					
-					String[] sline=line.split(",");
-					System.out.println("face"+sline[0]);
-					System.out.println("place"+sline[1]);
-					System.out.println("which"+sline[2]);
-					System.out.println("x"+sline[3]);
-					System.out.println("y"+sline[4]);
-					int which=Integer.parseInt(sline[2]);
-					int x=Integer.parseInt(sline[3]);
-					int y=Integer.parseInt(sline[4]);
+					/*** 課題はここからを改造 ***/
+
+					String[] sline = line.split(",");
+					System.out.println("face" + sline[0]);
+					System.out.println("place" + sline[1]);
+					System.out.println("which" + sline[2]);
+					System.out.println("x" + sline[3]);
+					System.out.println("y" + sline[4]);
+					int which = Integer.parseInt(sline[2]);
+					int x = Integer.parseInt(sline[3]);
+					int y = Integer.parseInt(sline[4]);
 					animation.setFacePlace(which, x, y, line);
 
 					// 顔の0番を強制的に移動させる関数
-					//animation.addFace(0, 50, 50, line);
+					// animation.addFace(0, 50, 50, line);
 
-					//animation.addFace(1, 200, 50, line);
+					// animation.addFace(1, 200, 50, line);
 
-					/***課題はここまでを改造***/
-				}else
-					//受け取ったコマンドがface,placeで始まりかつanimationがあるなら。
-					if (line.startsWith("face,emotion") && animation != null) {
+					/*** 課題はここまでを改造 ***/
+				} else
+				// 受け取ったコマンドがface,placeで始まりかつanimationがあるなら。
+				if (line.startsWith("face,emotion") && animation != null) {
 
-						String[] sline=line.split(",");
-						System.out.println("face"+sline[0]);
-						System.out.println("emotion"+sline[1]);
-						System.out.println("which"+sline[2]);
-						System.out.println("angly"+sline[3]);
+					String[] sline = line.split(",");
+					System.out.println("face" + sline[0]);
+					System.out.println("emotion" + sline[1]);
+					System.out.println("which" + sline[2]);
+					System.out.println("Expression" + sline[3]);
 
-						int which=Integer.parseInt(sline[2]);
-						String  emotion=sline[3];
+					int which = Integer.parseInt(sline[2]);
+					String emotion = sline[3];
 
-						animation.setFaceEmotion(which, emotion);
+					animation.setFaceEmotion(which, emotion);
 
-
-					}
+				}
 
 				// Clientにメッセージ送信
 				sendout.println("Message is received at Server. Thankyou! your message is ["
@@ -168,7 +164,7 @@ class GUIAniMultiTCPServer2 {
 				} catch (IOException ioex) {
 					ioex.printStackTrace();
 				}
-			}// finall end
+			} // finall end
 		}// run end
 	}// SrvWorkerThread end
 

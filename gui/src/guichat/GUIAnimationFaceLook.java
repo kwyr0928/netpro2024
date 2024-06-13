@@ -30,16 +30,16 @@ class GUIAnimatinFaceLook {// 顔のオブジェクト
 		makeEyes(g, w / 5);
 		makeNose(g, h / 5);
 		makeMouth(g, w / 2);
+		makebrows(g, "normal");
+
 	}
 
 	public void makeFace(Graphics g, String emotion) {
 		// **ここにemotion毎の顔を用意する。*///
-		if (emotion.equals("normal")) {
 			makeEyes(g, w / 5);
 			makeNose(g, h / 5);
 			makeMouth(g, w / 2);
-		}
-
+			makebrows(g, emotion);
 	}
 
 	/*
@@ -48,6 +48,26 @@ class GUIAnimatinFaceLook {// 顔のオブジェクト
 	 * g.drawLine(xStart, yStart + w, xStart + h, yStart + w); g.drawLine(xStart
 	 * + h, yStart, xStart + h, yStart + w); }
 	 */
+	void makebrows(Graphics g, String emotion){
+		if(emotion.equals("smile")){
+			g.drawLine(xStart+w*2/10, yStart+h/4, xStart+w*3/10, yStart+h/5);
+			g.drawLine(xStart+w*3/10, yStart+h/5, xStart+w*4/10, yStart+h/4);
+			g.drawLine(xStart+w*6/10, yStart+h/4, xStart+w*7/10, yStart+h/5);
+			g.drawLine(xStart+w*7/10, yStart+h/5, xStart+w*8/10, yStart+h/4);
+
+		}
+		if(emotion.equals("angry")){
+			g.drawLine(xStart+w*2/10, yStart+h/5, xStart+w*3/10, yStart+h/4);
+			g.drawLine(xStart+w*3/10, yStart+h/4, xStart+w*4/10, yStart+h/5);
+			g.drawLine(xStart+w*6/10, yStart+h/5, xStart+w*7/10, yStart+h/4);
+			g.drawLine(xStart+w*7/10, yStart+h/4, xStart+w*8/10, yStart+h/5);
+}
+if(emotion.equals("normal")){
+	g.drawLine(xStart+w*2/10, yStart+h/5, xStart+w*4/10, yStart+h/5);
+	g.drawLine(xStart+w*2/10, yStart+h/5, xStart+w*4/10, yStart+h/5);
+	g.drawLine(xStart+w*6/10, yStart+h/5, xStart+w*8/10, yStart+h/5);
+	g.drawLine(xStart+w*6/10, yStart+h/5, xStart+w*8/10, yStart+h/5);
+}}
 
 	void makeEyes(Graphics g, int eyeSize) {
 		// setColor(Color.red);

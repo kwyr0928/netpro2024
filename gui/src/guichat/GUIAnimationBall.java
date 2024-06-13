@@ -11,7 +11,7 @@ class GUIAnimationBall {
 	String cstr = "";
 	Random rdn;
 
-	String emotion="normal";
+	String emotion = "normal";
 
 	int w = 500;
 	int h = 500;
@@ -26,7 +26,7 @@ class GUIAnimationBall {
 	double yDir = 1;
 	private int strCounter;
 
-	private String basicLabelMessage = "(空白:未受信)";
+	private String basicLabelMessage = "Normal";
 
 	GUIAnimationBall(int w, int h) {
 
@@ -36,12 +36,11 @@ class GUIAnimationBall {
 		this.w = w;
 		this.h = h;
 
-		setPosition(rdn.nextInt(w), rdn.nextInt(h-5));
+		setPosition(rdn.nextInt(w), rdn.nextInt(h - 5));
 		setRadius(rdn.nextInt(30) + 30);// 30-60のサイズの顔の輪郭
 
 		this.basicColor = new Color(rdn.nextInt(255), rdn.nextInt(255),
 				rdn.nextInt(255));
-
 
 		facelook = new GUIAnimatinFaceLook();
 
@@ -49,7 +48,7 @@ class GUIAnimationBall {
 
 	/* 感情をセット */
 	public void setEmotion(String emotion) {
-		this.emotion=emotion;
+		this.emotion = emotion;
 	}
 
 	public void setMessage(String message) {
@@ -69,18 +68,18 @@ class GUIAnimationBall {
 
 		if ((xDir > 0) && (x + this.radius * 2 >= w)) {
 			xDir = -1 * xDir;
-			if(emotion.equals("angry")){
+			if (emotion.equals("angry")) {
 				setCollisionText("右が痛いわぁ!!激おこ", 6);
-			}else{
+			} else {
 				setCollisionText("右が痛い。。。でも言えない", 3);
 			}
 
 		} else if ((xDir < 0) && (x <= 0)) {
 			xDir = -1 * xDir;
 
-			if(emotion.equals("angry")){
+			if (emotion.equals("angry")) {
 				setCollisionText("左が痛いわぁ!!おこ", 6);
-			}else{
+			} else {
 				setCollisionText("左の頬が少し。。。", 4);
 			}
 
@@ -88,17 +87,17 @@ class GUIAnimationBall {
 
 		if ((yDir > 0) && (y + this.radius * 2 >= h)) {
 			yDir = -1 * yDir;
-			if(emotion.equals("angry")){
+			if (emotion.equals("angry")) {
 				setCollisionText("顎が痛いよ!!ぷんぷん", 7);
-			}else{
+			} else {
 				setCollisionText("AGO ITAI...Boku..", 4);
 			}
 		}
 		if ((yDir < 0) && (y <= 0)) {
 			yDir = -1 * yDir;
-			if(emotion.equals("angry")){
+			if (emotion.equals("angry")) {
 				setCollisionText("頭をぶつけたよ痛いよ!!まじ痛いよ", 8);
-			}else{
+			} else {
 				setCollisionText("こつん.", 4);
 			}
 
@@ -120,7 +119,7 @@ class GUIAnimationBall {
 
 	void draw(Graphics g) {
 
-		//円の処理
+		// 円の処理
 		g.setColor(basicColor);
 		g.fillOval(x, y, 2 * radius, 2 * radius); // rは半径なので2倍にする
 		g.drawString(basicLabelMessage, x - 5, y - 10);
@@ -135,9 +134,8 @@ class GUIAnimationBall {
 		facelook.setXY(x, y);
 		facelook.setSize(2 * radius, 2 * radius);
 
-
-		//fobj.makeFace(g);
-		facelook.makeFace(g,emotion);
+		// fobj.makeFace(g);
+		facelook.makeFace(g, emotion);
 
 		g.setColor(initColor);
 

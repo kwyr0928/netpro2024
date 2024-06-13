@@ -31,39 +31,27 @@ class GUIAniMultiTCPClient2 {
 		// doClientJob(hostname,"message hello2");
 		// doClientJob(hostname, "face,接続実験メッセージfromClient名前");
 		// 課題のヒント
-		doClientAccess(hostname, "face,place,0,100,200");
-		sleep5();
-		doClientAccess(hostname, "face,color,1,yellow");
-		sleep5();
-		doClientAccess(hostname, "face,emotion,0,angry");
-		sleep5();
 
 		while (true) {
 			try {
 
 				BufferedReader reader = // キーボードから接続するサーバ名を読み込む
-				new BufferedReader(new InputStreamReader(System.in));
-				System.out.println("input command:");
-				System.out.println("face,place,0,100,200");
-				System.out.println("face,color,1,yellow");
-				System.out.println("face,emotion,0,angry");
-				System.out.println(":");
+						new BufferedReader(new InputStreamReader(System.in));
 
 				String commandfromClient = reader.readLine();
-				if(commandfromClient.equals("end")||commandfromClient.equals("1")){
+				if (commandfromClient.equals("end") || commandfromClient.equals("1")) {
 					System.out.println("end");
 					System.exit(1);
 				}
 
-				doClientAccess(hostname, "commandfromClient");
-
+				doClientAccess(hostname, commandfromClient);
 
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			sleep5();
-		}//while
-	}//multi tcp client
+		} // while
+	}// multi tcp client
 
 	void sleep5() {
 		System.out.println("5s wait..");

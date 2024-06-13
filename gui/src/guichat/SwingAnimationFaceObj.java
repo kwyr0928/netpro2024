@@ -18,20 +18,19 @@ public class SwingAnimationFaceObj extends JPanel implements ActionListener {
 
 	private Ellipse2D.Float ellipse = new Ellipse2D.Float();
 
-
-	final int framespeed=50;
+	final int framespeed = 50;
 	final private double MAXCounter = 500;
 
 	private boolean isResetProcess = true;
 	private double counter;
 	private Timer timer;
 
-	private int ballnum = 2;
+	private int ballnum = 4;
 	private BallRim[] myBalls = new BallRim[ballnum];
 
 	public static void main(String[] args) {
 		/* おまじない：開始 */
-		SwingAnimationFaceObj animation =new SwingAnimationFaceObj();
+		SwingAnimationFaceObj animation = new SwingAnimationFaceObj();
 		JFrame frame = new JFrame("SwingFaceObject");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(animation);
@@ -81,7 +80,6 @@ public class SwingAnimationFaceObj extends JPanel implements ActionListener {
 		repaint();
 	}
 
-
 	public void setEllipseSize(double size, int w, int h) {
 		counter = size;
 		ellipse.setFrame(10, 10, size, size);
@@ -89,8 +87,8 @@ public class SwingAnimationFaceObj extends JPanel implements ActionListener {
 
 	public void initProcess(int w, int h) {
 
-		for(int i=0;i<myBalls.length;i++){
-			myBalls[i] = new BallRim(w,h);
+		for (int i = 0; i < myBalls.length; i++) {
+			myBalls[i] = new BallRim(w, h);
 		}
 
 		setEllipseSize(1, w, h);
@@ -104,7 +102,7 @@ public class SwingAnimationFaceObj extends JPanel implements ActionListener {
 
 		} else {
 
-			for(int i=0;i<myBalls.length;i++){
+			for (int i = 0; i < myBalls.length; i++) {
 				myBalls[i].move();
 			}
 
@@ -116,12 +114,12 @@ public class SwingAnimationFaceObj extends JPanel implements ActionListener {
 
 		g2.setColor(Color.BLUE);
 		g2.draw(ellipse);
-		g2.drawString(counter+"Step経過", 10, 10);
+		g2.drawString(counter + "Step経過", 10, 10);
 
-		for(int i=0;i<myBalls.length;i++){
-			myBalls[i].draw(g2);;
+		for (int i = 0; i < myBalls.length; i++) {
+			myBalls[i].draw(g2);
+			;
 		}
-
 
 	}
 
@@ -129,11 +127,11 @@ public class SwingAnimationFaceObj extends JPanel implements ActionListener {
 
 		FaceObj fobj;
 
-		String str="";
+		String str = "";
 
 		Random rdn;
-		int w=500;
-		int h=500;
+		int w = 500;
+		int h = 500;
 
 		int x;
 		int y;
@@ -144,22 +142,21 @@ public class SwingAnimationFaceObj extends JPanel implements ActionListener {
 		double yDir = 1;
 		private int strCounter;
 
-		BallRim(int w, int h){
+		BallRim(int w, int h) {
 
-			rdn=new Random();
-			xDir=rdn.nextDouble()*2-1;
-			yDir=rdn.nextDouble()*2-1;
-			this.w=w;
-			this.h=h;
-
+			rdn = new Random();
+			xDir = rdn.nextDouble() * 2 - 1;
+			yDir = rdn.nextDouble() * 2 - 1;
+			this.w = w;
+			this.h = h;
 
 			setPosition(rdn.nextInt(w), rdn.nextInt(h));
-			setRadius(rdn.nextInt(30)+30);//30-60のサイズの顔の輪郭
+			setRadius(rdn.nextInt(30) + 30);// 30-60のサイズの顔の輪郭
 
-			Color bcolor= new Color(rdn.nextInt(255),rdn.nextInt(255),rdn.nextInt(255));
+			Color bcolor = new Color(rdn.nextInt(255), rdn.nextInt(255), rdn.nextInt(255), 50);
 			setBasicColor(bcolor);
 
-			fobj=new FaceObj();
+			fobj = new FaceObj();
 
 		}
 
@@ -167,38 +164,36 @@ public class SwingAnimationFaceObj extends JPanel implements ActionListener {
 			this.basicColor = bcolor;
 		}
 
-		public void setCollisionText(String str,int strCounter){
-			this.str=str;
-			this.strCounter=strCounter;
+		public void setCollisionText(String str, int strCounter) {
+			this.str = str;
+			this.strCounter = strCounter;
 
 		}
 
 		void move() {
 
-
-			if ((xDir >0) && (x+this.radius*2 >= w)) {
-				xDir = -1*xDir;
-				setCollisionText("右が痛いわぁ",3);
-			}
-			else if ((xDir <0) && (x <= 0)) {
-				xDir = -1*xDir;
-				setCollisionText("左の頬がめちゃ痛いわ！",6);
-			}else if (xDir >0) {
+			if ((xDir > 0) && (x + this.radius * 2 >= w)) {
+				xDir = -1 * xDir;
+				setCollisionText("右が痛いわぁ", 3);
+			} else if ((xDir < 0) && (x <= 0)) {
+				xDir = -1 * xDir;
+				setCollisionText("左の頬がめちゃ痛いわ！", 6);
+			} else if (xDir > 0) {
 				x = x + 10;
 			} else {
 				x = x - 10;
 			}
 
-			if ((yDir >0) && (y+this.radius*2 >= h)) {
-				yDir = -1*yDir;
-				setCollisionText("顎が痛いわぁ",3);
+			if ((yDir > 0) && (y + this.radius * 2 >= h)) {
+				yDir = -1 * yDir;
+				setCollisionText("顎が痛いわぁ", 3);
 			}
-			if ((yDir <0) && (y <= 0)) {
-				yDir = -1*yDir;
-				setCollisionText("頭がめちゃ痛いわ！",6);
+			if ((yDir < 0) && (y <= 0)) {
+				yDir = -1 * yDir;
+				setCollisionText("頭がめちゃ痛いわ！", 6);
 			}
 
-			if (yDir >0) {
+			if (yDir > 0) {
 				y = y + 10;
 			} else {
 				y = y - 10;
@@ -218,37 +213,36 @@ public class SwingAnimationFaceObj extends JPanel implements ActionListener {
 		void draw(Graphics g) {
 			g.setColor(basicColor);
 			g.fillOval(x, y, 2 * radius, 2 * radius); // rは半径なので2倍にする
-			if(strCounter>0){
+			if (strCounter > 0) {
 				g.drawString(str, x, y);
 				strCounter--;
-			}else{
-				str="";
+			} else {
+				str = "";
 			}
 
 			fobj.setXY(x, y);
-			fobj.setSize(2*radius, 2*radius);
+			fobj.setSize(2 * radius, 2 * radius);
 			fobj.makeFace(g);
 
 		}
 
 	}// ball end
 
-
 	class FaceObj {
 		// コンストラクタ
 
-		int h=100;
-		int w=100;
+		int h = 100;
+		int w = 100;
 
 		int xStart = 0;
 		int yStart = 0;
 
-		public void setXY(int x, int y){
+		public void setXY(int x, int y) {
 			this.xStart = x;
 			this.yStart = y;
 		}
 
-		public void setSize(int h, int w){
+		public void setSize(int h, int w) {
 			this.h = h;
 			this.w = h;
 		}
@@ -260,41 +254,31 @@ public class SwingAnimationFaceObj extends JPanel implements ActionListener {
 		// 個々にメソッドを追加
 
 		public void makeFace(Graphics g) {
-			//makeRim(g);
-			makeEyes(g, w/5);
-			makeNose(g, h/5);
-			makeMouth(g, w/2);
+			// makeRim(g);
+			makeEyes(g, w / 5);
+			makeNose(g, h / 5);
+			makeMouth(g, w / 2);
 		}
 
 		/*
-		public void makeRim(Graphics g) {
-			g.drawLine(xStart, yStart, xStart + h, yStart);
-			g.drawLine(xStart, yStart, xStart, yStart + w);
-			g.drawLine(xStart, yStart + w, xStart + h, yStart + w);
-			g.drawLine(xStart + h, yStart, xStart + h, yStart + w);
-		}*/
+		 * public void makeRim(Graphics g) {
+		 * g.drawLine(xStart, yStart, xStart + h, yStart);
+		 * g.drawLine(xStart, yStart, xStart, yStart + w);
+		 * g.drawLine(xStart, yStart + w, xStart + h, yStart + w);
+		 * g.drawLine(xStart + h, yStart, xStart + h, yStart + w);
+		 * }
+		 */
 
 		public void makeEyes(Graphics g, int eyeSize) {
-			//setColor(Color.red);
-			//g.fillRect(xStart + (h * 1 / 3) - 20, yStart + (w * 1 / 3) - 10,
-			//		10, 10);
-			g.setColor(Color.blue);
-
-			// g.fillRoundRect()
-			// g.fillOval()
-			g.fillArc(xStart + (h * 2/ 7) , yStart + (w * 1 / 3), eyeSize,
-					eyeSize, 0, 300);
-			g.setColor(Color.black);
-
-			//g.drawLine(xStart + (h * 1 / 3) - 20, yStart + (w * 1 / 3) - 10,
-			//		xStart + (h * 1 / 3) + 20, yStart + (w * 1 / 3) - 10);
-			//g.drawLine(xStart + (h * 2 / 3) - 20, yStart + (w * 1 / 3) - 10,
-			//		xStart + (h * 2 / 3) + 20, yStart + (w * 1 / 3) - 10);
-
-			g.drawOval(xStart + (h * 2 / 7) , yStart + (w * 1 / 3),
-					eyeSize, eyeSize);
-			g.drawOval(xStart + (h * 4 / 7) , yStart + (w * 1 / 3),
-					eyeSize, eyeSize);
+			g.setColor(Color.BLACK);
+			g.drawLine(xStart + w * 2 / 10, yStart + h / 4, xStart + w * 3 / 10, yStart + h / 5);
+			g.drawLine(xStart + w * 3 / 10, yStart + h / 5, xStart + w * 4 / 10, yStart + h / 4);
+			g.drawLine(xStart + w * 6 / 10, yStart + h / 4, xStart + w * 7 / 10, yStart + h / 5);
+			g.drawLine(xStart + w * 7 / 10, yStart + h / 5, xStart + w * 8 / 10, yStart + h / 4);
+			g.drawLine(xStart + w * 2 / 10, yStart + h * 3 / 10, xStart + w * 4 / 10, yStart + h * 4 / 10);
+			g.drawLine(xStart + w * 4 / 10, yStart + h * 4 / 10, xStart + w * 2 / 10, yStart + h * 5 / 10);
+			g.drawLine(xStart + w * 6 / 10, yStart + h * 4 / 10, xStart + w * 8 / 10, yStart + h * 3 / 10);
+			g.drawLine(xStart + w * 8 / 10, yStart + h * 5 / 10, xStart + w * 6 / 10, yStart + h * 4 / 10);
 		}
 
 		public void makeNose(Graphics g, int noseSize) {
@@ -303,11 +287,13 @@ public class SwingAnimationFaceObj extends JPanel implements ActionListener {
 		}
 
 		public void makeMouth(Graphics g, int mouseSize) {
-			int xMiddle = xStart + h / 2;
-			int yMiddle = yStart + 3*w/4;
-			g.drawLine(xMiddle - mouseSize / 2, yMiddle, xMiddle + mouseSize
-					/ 2, yMiddle);
+			g.setColor(Color.RED);
+			g.drawLine(xStart + w * 3 / 10, yStart + h * 7 / 10, xStart + w * 5 / 10, yStart + h * 8 / 10);
+			g.drawLine(xStart + w * 5 / 10, yStart + h * 8 / 10, xStart + w * 7 / 10, yStart + h * 7 / 10);
+			g.setColor(Color.pink);
+			g.fillOval(xStart + w * 2 / 10, yStart + h * 6 / 10, w * 2 / 10, w * 2 / 10);
+			g.fillOval(xStart + w * 7 / 10, yStart + h * 6 / 10, w * 2 / 10, w * 2 / 10);
 		}
-	}//FaceObj End
+	}// FaceObj End
 
 }

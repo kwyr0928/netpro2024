@@ -67,6 +67,7 @@ public class GUIAnimationMain extends JPanel implements ActionListener {
 	public void setFaceEmotion(int which, String emotion) {
 		System.out.println("setFaceEmotion() :" + emotion);
 		myBallRims[which].setEmotion(emotion);
+		myBallRims[which].setMessage(emotion.toString());
 	}
 
 	// i番目の顔の色を変更する関数。
@@ -148,7 +149,5 @@ public class GUIAnimationMain extends JPanel implements ActionListener {
 	}// paintProcess end
 
 	// 顔の輪郭
-
-
 
 }// GUI Animation End
